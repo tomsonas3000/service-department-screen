@@ -1,0 +1,24 @@
+﻿@page "/departmentscreen"
+
+@if (ActiveCodes == null || UpcomingCodes == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <h1>Upcoming visits</h1>
+    <ul>
+        @foreach (var reservationCode in UpcomingCodes)
+        {
+            <il>@reservationCode.ReservationCodeId</il>
+        }
+    </ul>
+    <h1>Active visits</h1>
+    <ul>
+       @foreach (var reservationCode in ActiveCodes)
+       {
+           <il>@reservationCode.ReservationCodeId</il>
+       }
+    </ul>
+}
+

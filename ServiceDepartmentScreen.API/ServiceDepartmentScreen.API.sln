@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDepartmentScreen.API", "ServiceDepartmentScreen.API\ServiceDepartmentScreen.API.csproj", "{59C27F44-CEE0-450D-A085-335AE277D1DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceDepartmentScreen.API", "ServiceDepartmentScreen.API\ServiceDepartmentScreen.API.csproj", "{59C27F44-CEE0-450D-A085-335AE277D1DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDepartmentScreen.WebApp", "ServiceDepartmentScreen.WebApp\ServiceDepartmentScreen.WebApp.csproj", "{53C4608C-A9D7-4718-B616-09F25A800373}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceDepartmentScreen.WebApp", "ServiceDepartmentScreen.WebApp\ServiceDepartmentScreen.WebApp.csproj", "{53C4608C-A9D7-4718-B616-09F25A800373}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDepartmentScreen.Shared", "ServiceDepartmentScreen.Shared\ServiceDepartmentScreen.Shared.csproj", "{A8101969-1D2D-4828-B33A-44E84E8C377F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceDepartmentScreen.Shared", "ServiceDepartmentScreen.Shared\ServiceDepartmentScreen.Shared.csproj", "{A8101969-1D2D-4828-B33A-44E84E8C377F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
