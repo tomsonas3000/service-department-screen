@@ -71,5 +71,10 @@ namespace ServiceDepartmentScreen.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Internal database error");
             }
         }
+        [HttpGet("new")]
+        public void GetNewCode()
+        {
+            _codeRepository.GetNewCode();
+        }
     }
 }

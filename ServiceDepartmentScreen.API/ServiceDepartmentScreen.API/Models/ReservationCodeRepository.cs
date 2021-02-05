@@ -39,5 +39,37 @@ namespace ServiceDepartmentScreen.API.Models
             var query = _appDbContext.ReservationCodes.Where(r => r.SpecialistId == id);
             return await query.ToArrayAsync();
         }
+
+        public void GetNewCode()
+        {
+            var query = _appDbContext.ReservationCodes.FromSqlRaw("SELECT TOP 1 -1 AS ReservationCodeId, MAX(ReservationDate) AS ReservationDate,SpecialistId, 1 AS Status FROM ReservationCodes GROUP BY SpecialistId ORDER BY ReservationDate ASC").FirstOrDefault();
+            var from = query.ReservationDate;
+            var newDate = from;
+            if (from.DayOfWeek == DayOfWeek.Friday && 
+                from.TimeOfDay >= new TimeSpan(17,45, 0))
+            {
+                newDate = newDate.AddDays(3);
+                var ts = new TimeSpan(9, 0, 0);
+                newDate = newDate.Date + ts;
+            }
+            else if (from.TimeOfDay >= new TimeSpan(17,45,0))
+            {
+                newDate = newDate.AddDays(1);
+                var ts = new TimeSpan(9, 0, 0);
+                newDate = newDate.Date + ts;
+            }
+            else
+            {
+                newDate = newDate.AddMinutes(15);
+            }
+            var code = new ReservationCode
+            {
+                ReservationDate = newDate,
+                SpecialistId = query.SpecialistId,
+                Status = Status.Upcoming
+            };
+            var addedEntity = _appDbContext.ReservationCodes.Add(code);
+            _appDbContext.SaveChanges();
+        }
     }
 }
