@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ServiceDepartmentScreen.API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,8 @@ namespace ServiceDepartmentScreen.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddScoped<IReservationCodeRepository, ReservationCodeRepository>();
+            services.AddScoped<ISpecialistRepository, SpecialistRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
