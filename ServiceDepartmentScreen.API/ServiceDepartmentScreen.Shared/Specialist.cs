@@ -1,7 +1,10 @@
-﻿namespace ServiceDepartmentScreen.Shared
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ServiceDepartmentScreen.Shared
 {
     public class Specialist
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SpecialistId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

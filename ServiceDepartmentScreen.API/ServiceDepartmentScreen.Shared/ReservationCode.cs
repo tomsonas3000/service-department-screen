@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ServiceDepartmentScreen.Shared
 {
     public class ReservationCode
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ReservationCodeId { get; set; }
         public DateTime ReservationDate { get; set; }
         public Status Status { get; set; }
