@@ -28,5 +28,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ServiceDepartmentScreen.Shared\ServiceDepartmentScreen.Shared.csproj" />
+  </ItemGroup>
+
 
 </Project>

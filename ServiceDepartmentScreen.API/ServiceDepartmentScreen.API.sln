@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDepartmentScreen.API
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDepartmentScreen.WebApp", "ServiceDepartmentScreen.WebApp\ServiceDepartmentScreen.WebApp.csproj", "{53C4608C-A9D7-4718-B616-09F25A800373}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDepartmentScreen.Shared", "ServiceDepartmentScreen.Shared\ServiceDepartmentScreen.Shared.csproj", "{A8101969-1D2D-4828-B33A-44E84E8C377F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{53C4608C-A9D7-4718-B616-09F25A800373}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53C4608C-A9D7-4718-B616-09F25A800373}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53C4608C-A9D7-4718-B616-09F25A800373}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8101969-1D2D-4828-B33A-44E84E8C377F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8101969-1D2D-4828-B33A-44E84E8C377F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8101969-1D2D-4828-B33A-44E84E8C377F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8101969-1D2D-4828-B33A-44E84E8C377F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
