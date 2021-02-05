@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,6 +13,7 @@ namespace ServiceDepartmentScreen.API.Models
         public bool HasBegun { get; set; }
         public bool IsCancelled { get; set; }
         public bool HasEnded { get; set; }
+        public int SpecialistId { get; set; }
         public Specialist Specialist { get; set; }
     }
 }

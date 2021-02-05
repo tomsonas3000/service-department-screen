@@ -21,12 +21,12 @@ namespace ServiceDepartmentScreen.API.Models
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Specialist>().HasData(new Specialist
-            { 
+            {
                 SpecialistId = 1,
                 FirstName = "Specialist1",
-                LastName = "Specialist1", 
-                Password = "123456", 
-                Username = "spec1" 
+                LastName = "Specialist1",
+                Password = "123456",
+                Username = "spec1"
             });
             modelBuilder.Entity<Specialist>().HasData(new Specialist
             {
@@ -56,10 +56,11 @@ namespace ServiceDepartmentScreen.API.Models
             modelBuilder.Entity<ReservationCode>().HasData(new ReservationCode
             {
                 ReservationCodeId = 1,
-                ReservationDate = new DateTime(2021,02,05,22,15,25),
+                ReservationDate = new DateTime(2021, 02, 05, 22, 15, 25),
                 HasBegun = false,
                 HasEnded = false,
-                IsCancelled = true
+                IsCancelled = true,
+                SpecialistId = 2
             });
             modelBuilder.Entity<ReservationCode>().HasData(new ReservationCode
             {
@@ -67,7 +68,8 @@ namespace ServiceDepartmentScreen.API.Models
                 ReservationDate = new DateTime(2021, 02, 05, 16, 15, 25),
                 HasBegun = false,
                 HasEnded = false,
-                IsCancelled = false
+                IsCancelled = false,
+                SpecialistId = 1
             });
             modelBuilder.Entity<ReservationCode>().HasData(new ReservationCode
             {
@@ -75,7 +77,7 @@ namespace ServiceDepartmentScreen.API.Models
                 ReservationDate = new DateTime(2021, 02, 05, 18, 15, 25),
                 HasBegun = false,
                 HasEnded = false,
-                IsCancelled = false
+                SpecialistId = 3
             });
             modelBuilder.Entity<ReservationCode>().HasData(new ReservationCode
             {
@@ -83,7 +85,7 @@ namespace ServiceDepartmentScreen.API.Models
                 ReservationDate = new DateTime(2021, 02, 05, 12, 15, 25),
                 HasBegun = false,
                 HasEnded = false,
-                IsCancelled = false
+                SpecialistId = 1
             });
             modelBuilder.Entity<ReservationCode>().HasData(new ReservationCode
             {
@@ -91,7 +93,7 @@ namespace ServiceDepartmentScreen.API.Models
                 ReservationDate = new DateTime(2021, 02, 05, 10, 15, 25),
                 HasBegun = false,
                 HasEnded = true,
-                IsCancelled = true
+                SpecialistId = 2
             });
             modelBuilder.Entity<ReservationCode>().HasData(new ReservationCode
             {
@@ -99,7 +101,7 @@ namespace ServiceDepartmentScreen.API.Models
                 ReservationDate = new DateTime(2021, 02, 05, 22, 15, 25),
                 HasBegun = false,
                 HasEnded = false,
-                IsCancelled = true
+                SpecialistId = 3
             });
         }
     }

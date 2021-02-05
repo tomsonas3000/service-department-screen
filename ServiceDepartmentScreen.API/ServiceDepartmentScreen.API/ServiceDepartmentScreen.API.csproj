@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20210205121150_AddSpecialistId.cs" />
+    <Compile Remove="Migrations\20210205121150_AddSpecialistId.Designer.cs" />
+    <Compile Remove="Migrations\20210205121654_AddSpecialistId2.cs" />
+    <Compile Remove="Migrations\20210205121654_AddSpecialistId2.Designer.cs" />
+    <Compile Remove="Migrations\20210205121736_AddSpecialistIdv3.cs" />
+    <Compile Remove="Migrations\20210205121736_AddSpecialistIdv3.Designer.cs" />
+    <Compile Remove="Migrations\20210205122318_AddSpecialistIdv4.cs" />
+    <Compile Remove="Migrations\20210205122318_AddSpecialistIdv4.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.11">
       <PrivateAssets>all</PrivateAssets>

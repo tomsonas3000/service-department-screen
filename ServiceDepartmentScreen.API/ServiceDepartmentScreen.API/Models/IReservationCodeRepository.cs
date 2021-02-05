@@ -8,9 +8,8 @@ namespace ServiceDepartmentScreen.API.Models
 {
     public interface IReservationCodeRepository
     {
-        IEnumerable<ReservationCode> AllCodes { get; }
-        IEnumerable<ReservationCode> ActiveCodes { get; }
-        IEnumerable<ReservationCode> UpcomingCodes { get; }
-        ReservationCode GetCodeById { get; }
+        Task<ReservationCode[]> GetActiveCodes();
+        Task<ReservationCode[]> GetUpcomingCodes();
+        Task<ReservationCode> GetCodeById(int id);
     }
 }

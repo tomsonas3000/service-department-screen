@@ -14,24 +14,23 @@ namespace ServiceDepartmentScreen.API.Models
         {
             _appDbContext = appDbContext;
         }
-        public IEnumerable<ReservationCode> AllCodes
+
+        public async Task<ReservationCode[]> GetActiveCodes()
         {
-            get
-            {
-                return _appDbContext.ReservationCodes;
-            }
+            var query = _appDbContext.ReservationCodes.Where(r => r.HasBegun && !r.HasEnded && !r.IsCancelled);
+            return await query.ToArrayAsync();
         }
 
-        public IEnumerable<ReservationCode> ActiveCodes
+        public async Task<ReservationCode> GetCodeById(int id)
         {
-            get
-            {
-                return _appDbContext.ReservationCodes.Where(c => c.HasBegun);
-            }
+            var query = _appDbContext.ReservationCodes.Where(r => r.ReservationCodeId == id);
+            return await query.FirstOrDefaultAsync();
         }
 
-        public IEnumerable<ReservationCode> UpcomingCodes => throw new NotImplementedException();
-
-        public ReservationCode GetCodeById => throw new NotImplementedException();
+        public async Task<ReservationCode[]> GetUpcomingCodes()
+        {
+            var query = _appDbContext.ReservationCodes.Where(r => !r.HasBegun && !r.IsCancelled && !r.HasEnded).Take(5);
+            return await query.ToArrayAsync();
+        }
     }
 }
