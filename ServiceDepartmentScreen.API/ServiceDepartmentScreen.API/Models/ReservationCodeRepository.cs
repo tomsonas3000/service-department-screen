@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,26 @@ namespace ServiceDepartmentScreen.API.Models
 {
     public class ReservationCodeRepository : IReservationCodeRepository
     {
-        private readonly IReservationCodeRepository _reservationCodeRepository = new ReservationCodeRepository();
-        public IEnumerable<ReservationCode> AllCodes => throw new NotImplementedException();
+        private readonly AppDbContext _appDbContext;
+        public ReservationCodeRepository(AppDbContext appDbContext)
+        {
+            _appDbContext = appDbContext;
+        }
+        public IEnumerable<ReservationCode> AllCodes
+        {
+            get
+            {
+                return _appDbContext.ReservationCodes;
+            }
+        }
 
-        public IEnumerable<ReservationCode> ActiveCodes => throw new NotImplementedException();
+        public IEnumerable<ReservationCode> ActiveCodes
+        {
+            get
+            {
+                return _appDbContext.ReservationCodes.Where(c => c.HasBegun);
+            }
+        }
 
         public IEnumerable<ReservationCode> UpcomingCodes => throw new NotImplementedException();
 

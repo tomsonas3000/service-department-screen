@@ -8,7 +8,11 @@ namespace ServiceDepartmentScreen.API.Models
 {
     public class SpecialistRepository : ISpecialistRepository
     {
-        private readonly ISpecialistRepository _specialistRepository = new SpecialistRepository();
-        public IEnumerable<Specialist> AllSpecialists => throw new NotImplementedException();
+        private readonly AppDbContext _appDbContext;
+        public SpecialistRepository(AppDbContext appDbContext)
+        {
+            _appDbContext = appDbContext;
+        }
+        public IEnumerable<Specialist> AllSpecialists => _appDbContext.Specialists;
     }
 }
