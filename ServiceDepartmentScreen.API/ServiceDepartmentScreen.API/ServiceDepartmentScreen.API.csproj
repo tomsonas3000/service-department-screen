@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ServiceDepartmentScreen.Shared\ServiceDepartmentScreen.Shared.csproj" />
+    <ProjectReference Include="..\ServiceDepartmentScreen.WebApp\ServiceDepartmentScreen.WebApp.csproj" />
   </ItemGroup>
 
 

@@ -6,9 +6,7 @@ namespace ServiceDepartmentScreen.Shared
     {
         public int ReservationCodeId { get; set; }
         public DateTime ReservationDate { get; set; }
-        public bool HasBegun { get; set; }
-        public bool IsCancelled { get; set; }
-        public bool HasEnded { get; set; }
+        public Status Status { get; set; }
         public int SpecialistId { get; set; }
         public Specialist Specialist { get; set; }
     }

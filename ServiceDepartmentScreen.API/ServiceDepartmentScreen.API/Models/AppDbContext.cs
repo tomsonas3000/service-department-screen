@@ -58,50 +58,42 @@ namespace ServiceDepartmentScreen.API.Models
             {
                 ReservationCodeId = 1,
                 ReservationDate = new DateTime(2021, 02, 05, 22, 15, 25),
-                HasBegun = false,
-                HasEnded = false,
-                IsCancelled = true,
+                Status = Status.Active,
                 SpecialistId = 2
             });
             modelBuilder.Entity<ReservationCode>().HasData(new ReservationCode
             {
                 ReservationCodeId = 2,
                 ReservationDate = new DateTime(2021, 02, 05, 16, 15, 25),
-                HasBegun = false,
-                HasEnded = false,
-                IsCancelled = false,
+                Status = Status.Cancelled,
                 SpecialistId = 1
             });
             modelBuilder.Entity<ReservationCode>().HasData(new ReservationCode
             {
                 ReservationCodeId = 3,
                 ReservationDate = new DateTime(2021, 02, 05, 18, 15, 25),
-                HasBegun = false,
-                HasEnded = false,
+                Status = Status.Active,
                 SpecialistId = 3
             });
             modelBuilder.Entity<ReservationCode>().HasData(new ReservationCode
             {
                 ReservationCodeId = 4,
                 ReservationDate = new DateTime(2021, 02, 05, 12, 15, 25),
-                HasBegun = false,
-                HasEnded = false,
+                Status = Status.Upcoming,
                 SpecialistId = 1
             });
             modelBuilder.Entity<ReservationCode>().HasData(new ReservationCode
             {
                 ReservationCodeId = 5,
                 ReservationDate = new DateTime(2021, 02, 05, 10, 15, 25),
-                HasBegun = false,
-                HasEnded = true,
+                Status = Status.Active,
                 SpecialistId = 2
             });
             modelBuilder.Entity<ReservationCode>().HasData(new ReservationCode
             {
                 ReservationCodeId = 6,
                 ReservationDate = new DateTime(2021, 02, 05, 22, 15, 25),
-                HasBegun = false,
-                HasEnded = false,
+                Status = Status.Upcoming,
                 SpecialistId = 3
             });
         }

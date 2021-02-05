@@ -18,7 +18,7 @@ namespace ServiceDepartmentScreen.API.Models
 
         public async Task<ReservationCode[]> GetActiveCodes()
         {
-            var query = _appDbContext.ReservationCodes.Where(r => r.HasBegun && !r.HasEnded && !r.IsCancelled);
+            var query = _appDbContext.ReservationCodes.Where(r => r.Status == Status.Active);
             return await query.ToArrayAsync();
         }
 
@@ -30,7 +30,7 @@ namespace ServiceDepartmentScreen.API.Models
 
         public async Task<ReservationCode[]> GetUpcomingCodes()
         {
-            var query = _appDbContext.ReservationCodes.Where(r => !r.HasBegun && !r.IsCancelled && !r.HasEnded).Take(5);
+            var query = _appDbContext.ReservationCodes.Where(r => r.Status == Status.Upcoming).Take(5);
             return await query.ToArrayAsync();
         }
 
