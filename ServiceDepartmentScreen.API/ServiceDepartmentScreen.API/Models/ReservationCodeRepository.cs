@@ -23,7 +23,7 @@ namespace ServiceDepartmentScreen.API.Models
 
         public async Task<ReservationCode> GetCodeById(int id)
         {
-            var query = _appDbContext.ReservationCodes.Where(r => r.ReservationCodeId == id);
+            var query = _appDbContext.ReservationCodes.Where(r => r.ReservationCodeId == id).Include(r => r.Specialist);
             return await query.FirstOrDefaultAsync();
         }
 
