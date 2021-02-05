@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,10 @@ namespace ServiceDepartmentScreen.API.Models
         {
             _appDbContext = appDbContext;
         }
-        public IEnumerable<Specialist> AllSpecialists => _appDbContext.Specialists;
+        public async Task<Specialist[]> GetAllSpecialists()
+        {
+            IQueryable<Specialist> query = _appDbContext.Specialists;
+            return await query.ToArrayAsync();
+        }
     }
 }

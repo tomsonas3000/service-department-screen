@@ -8,6 +8,6 @@ namespace ServiceDepartmentScreen.API.Models
 {
     public interface ISpecialistRepository
     {
-        IEnumerable<Specialist> AllSpecialists { get; }
+        Task<Specialist[]> GetAllSpecialists();
     }
 }
