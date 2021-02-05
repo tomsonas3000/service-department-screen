@@ -32,5 +32,11 @@ namespace ServiceDepartmentScreen.API.Models
             var query = _appDbContext.ReservationCodes.Where(r => !r.HasBegun && !r.IsCancelled && !r.HasEnded).Take(5);
             return await query.ToArrayAsync();
         }
+
+        public async Task<ReservationCode[]> GetCodesBySpecialistId(int id)
+        {
+            var query = _appDbContext.ReservationCodes.Where(r => r.SpecialistId == id);
+            return await query.ToArrayAsync();
+        }
     }
 }

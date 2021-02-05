@@ -57,5 +57,18 @@ namespace ServiceDepartmentScreen.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Internal database error");
             }
         }
+        [HttpGet("specialist/{id}")]
+        public async Task<ActionResult<ReservationCode[]>> GetCodeBySpecialistId(int id)
+        {
+            try
+            {
+                return await _codeRepository.GetCodesBySpecialistId(id); ;
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal database error");
+            }
+        }
     }
 }
