@@ -89,5 +89,21 @@ namespace ServiceDepartmentScreen.API.Controllers
 
             return BadRequest();
         }
+
+        [HttpPut("update/{id}")]
+        public async Task<ActionResult<ReservationCode>> UpdateStatusOfCode(int id, Status status)
+        {
+            try
+            {
+                var oldCode = await _codeRepository.GetCodeById(id);
+                if (oldCode == null) return NotFound($"Could not find code with this ID {id}");
+                var newCode = await _codeRepository.UpdateStatus(id, status);
+                return newCode;
+            }
+            catch (Exception )
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal database error");
+            }
+        }
     }
 }

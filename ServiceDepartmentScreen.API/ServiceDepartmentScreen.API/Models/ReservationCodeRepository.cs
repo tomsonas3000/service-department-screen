@@ -76,5 +76,14 @@ namespace ServiceDepartmentScreen.API.Models
             var addedEntity = _appDbContext.ReservationCodes.Add(code);
             return addedEntity.Entity;
         }
+
+        public async Task<ReservationCode> UpdateStatus(int id, Status status)
+        {
+            var foundCode = await _appDbContext.ReservationCodes.FirstOrDefaultAsync(r => r.ReservationCodeId == id);
+            if (foundCode == null) return null;
+            foundCode.Status = status;
+            await _appDbContext.SaveChangesAsync();
+            return foundCode;
+        }
     }
 }
