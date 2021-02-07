@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using ServiceDepartmentScreen.Shared;
 
@@ -43,6 +45,15 @@ namespace ServiceDepartmentScreen.WebApp.Services
             return await JsonSerializer.DeserializeAsync<IEnumerable<ReservationCode>>(
                 await _httpClient.GetStreamAsync($"api/reservationcode/specialist/{specialistId}"),
                 new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+        }
+
+        public async Task<ReservationCode> GenerateNewCode()
+        {
+            var response = await _httpClient.PostAsync("api/reservationcode/new", null);
+            if (!response.IsSuccessStatusCode) return null;
+            var generatedCode = JsonSerializer.Deserialize<ReservationCode>(response.Content.ReadAsStringAsync().Result,
+                new JsonSerializerOptions {PropertyNameCaseInsensitive = true});
+            return generatedCode;
         }
     }
 }

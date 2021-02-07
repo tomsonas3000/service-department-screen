@@ -72,7 +72,7 @@ namespace ServiceDepartmentScreen.API.Controllers
             }
         }
         [HttpPost("new")]
-        public async Task<ActionResult<ReservationCode>> GetNewCode()
+        public async Task<ActionResult<ReservationCode>> GenerateNewCode()
         {
             try
             {
