@@ -50,7 +50,9 @@ namespace ServiceDepartmentScreen.API.Controllers
         {
             try
             {
-                return await _codeRepository.GetCodeById(id); ;
+                var result = await _codeRepository.GetCodeById(id);
+                if (result == null) return NotFound();
+                return result;
             }
             catch (Exception)
             {
@@ -91,7 +93,7 @@ namespace ServiceDepartmentScreen.API.Controllers
         }
 
         [HttpPut("update/{codeId}")]
-        public async Task<ActionResult<ReservationCode>> UpdateStatusOfCode(int codeId, Status status)
+        public async Task<ActionResult<ReservationCode>> UpdateStatusOfCode(int codeId, [FromBody] Status status)
         {
             try
             {

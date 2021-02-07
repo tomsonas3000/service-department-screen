@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
@@ -35,9 +36,11 @@ namespace ServiceDepartmentScreen.WebApp.Services
 
         public async Task<ReservationCode> GetCodeById(int id)
         {
-            return await JsonSerializer.DeserializeAsync<ReservationCode>(
-                await _httpClient.GetStreamAsync($"api/reservationcode/{id}"),
-                new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+            var response = await _httpClient.GetAsync($"api/reservationcode/{id}");
+            if (!response.IsSuccessStatusCode) return null;
+            var code = JsonSerializer.Deserialize<ReservationCode>(response.Content.ReadAsStringAsync().Result,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            return code;
         }
 
         public async Task<IEnumerable<ReservationCode>> GetCodesBySpecialistId(int specialistId)
@@ -54,6 +57,16 @@ namespace ServiceDepartmentScreen.WebApp.Services
             var generatedCode = JsonSerializer.Deserialize<ReservationCode>(response.Content.ReadAsStringAsync().Result,
                 new JsonSerializerOptions {PropertyNameCaseInsensitive = true});
             return generatedCode;
+        }
+
+        public async Task<ReservationCode> UpdateStatus(int id, Status status)
+        {
+            var statusJson = new StringContent(JsonSerializer.Serialize(status), Encoding.UTF8, "application/json");
+            var response = await _httpClient.PutAsync($"/api/reservationcode/update/{id}", statusJson);
+            if (!response.IsSuccessStatusCode) return null;
+            var updatedCode = JsonSerializer.Deserialize<ReservationCode>(response.Content.ReadAsStringAsync().Result,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            return updatedCode;
         }
     }
 }

@@ -1,0 +1,34 @@
+﻿@page "/customer/code"
+
+<div>
+    <EditForm Model="CodeId" OnValidSubmit="@HandleSubmit">
+        <label for="codeId">Reservation code</label>
+        <InputText @bind-Value="CodeId" id="codeId"></InputText>
+        <button type="submit">Check code</button>
+    </EditForm>
+    @if (ReservationCode != null)
+    {
+        <table>
+            <thead>
+            <tr>
+                <th>Reservation Code ID</th>
+                <th>Time of visit</th>
+                <th>The status of the visit</th>
+                <th>Cancel</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>@ReservationCode.ReservationCodeId</td>
+                <td>@ReservationCode.ReservationDate</td>
+                <td>@ReservationCode.Status</td>
+                <td><button @onclick="@HandleCancel" disabled="@IsCancellable">Cancel</button></td>
+            </tr>
+            </tbody>
+        </table>
+    }
+    @if (ReservationCode == null && CodeId != string.Empty)
+    {
+        <p>The code is invalid</p>
+    }
+</div>

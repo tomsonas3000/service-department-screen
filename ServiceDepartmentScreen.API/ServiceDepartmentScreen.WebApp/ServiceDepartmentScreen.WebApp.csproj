@@ -17,4 +17,8 @@
     <ProjectReference Include="..\ServiceDepartmentScreen.Shared\ServiceDepartmentScreen.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Specialist\" />
+  </ItemGroup>
+
 </Project>

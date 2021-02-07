@@ -14,5 +14,6 @@ namespace ServiceDepartmentScreen.WebApp.Services
         Task<ReservationCode> GetCodeById(int id);
         Task<IEnumerable<ReservationCode>> GetCodesBySpecialistId(int specialistId);
         Task<ReservationCode> GenerateNewCode();
+        Task<ReservationCode> UpdateStatus(int id, Status status);
     }
 }

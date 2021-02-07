@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Components;
 using ServiceDepartmentScreen.Shared;
 using ServiceDepartmentScreen.WebApp.Services;
 
-namespace ServiceDepartmentScreen.WebApp.Pages
+namespace ServiceDepartmentScreen.WebApp.Pages.Customer
 {
-    public partial class Customer
+    public partial class Generator
     {
         [Inject]
         public IReservationCodeService ReservationCodeService { get; set; }

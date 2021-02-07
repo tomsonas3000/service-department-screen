@@ -1,0 +1,21 @@
+﻿@page "/customer/new"
+<div>
+    <button @onclick="@GenerateNewCode">Generate a reservation code</button>
+</div>
+@if (GeneratedReservationCode != null)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Reservation Code ID</th>
+                <th>Time of visit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@GeneratedReservationCode.ReservationCodeId</td>
+                <td>@GeneratedReservationCode.ReservationDate</td>
+            </tr>
+        </tbody>
+    </table>
+}
