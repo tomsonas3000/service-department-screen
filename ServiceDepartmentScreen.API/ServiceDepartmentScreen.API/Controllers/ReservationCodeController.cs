@@ -91,13 +91,13 @@ namespace ServiceDepartmentScreen.API.Controllers
         }
 
         [HttpPut("update/{codeId}")]
-        public async Task<ActionResult<ReservationCode>> UpdateStatusOfCode(int codeId, int specialistId, Status status)
+        public async Task<ActionResult<ReservationCode>> UpdateStatusOfCode(int codeId, Status status)
         {
             try
             {
                 var oldCode = await _codeRepository.GetCodeById(codeId);
                 if (oldCode == null) return NotFound($"Could not find code with this ID {codeId}");
-                if (status == Status.Active && await _codeRepository.CheckIfActiveBySpecialist(specialistId))
+                if (status == Status.Active && await _codeRepository.CheckIfActiveBySpecialist(oldCode.SpecialistId))
                 {
                     return StatusCode(StatusCodes.Status409Conflict, "The specialist already has an active visit");
                 }
