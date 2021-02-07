@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using ServiceDepartmentScreen.Shared;
@@ -20,6 +21,17 @@ namespace ServiceDepartmentScreen.WebApp.Pages
         {
             ActiveCodes = (await ReservationCodeService.GetActiveCodes()).ToList();
             UpcomingCodes = (await ReservationCodeService.GetUpcomingCodes()).ToList();
+            UpdateData();
+        }
+
+        protected void  UpdateData()
+        {
+            var timer = new Timer(new TimerCallback(async _ =>
+            {
+                 ActiveCodes = (await ReservationCodeService.GetActiveCodes()).ToList();
+                 UpcomingCodes = (await ReservationCodeService.GetUpcomingCodes()).ToList();
+                 StateHasChanged();
+            }), null, 5000, 5000);
         }
     }
 }

@@ -1,7 +1,13 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+<div class="container">
+    <div class="row">
+        <div class="col">
+            Are you a customer?
+        </div>
+        <div class="col">
+            Are you a specialist?
+            <a href="@($"departmentscreen")">Screen</a>
+        </div>
+    </div>
+</div>
