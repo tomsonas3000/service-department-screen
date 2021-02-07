@@ -40,7 +40,12 @@ namespace ServiceDepartmentScreen.API.Models
             return await query.ToArrayAsync();
         }
 
-        public void GetNewCode()
+        public async Task<bool> SaveChangesAsync()
+        {
+            return (await _appDbContext.SaveChangesAsync()) > 0;
+        }
+
+        public ReservationCode GenerateNewCode()
         {
             var query = _appDbContext.ReservationCodes.FromSqlRaw("SELECT TOP 1 -1 AS ReservationCodeId, MAX(ReservationDate) AS ReservationDate,SpecialistId, 1 AS Status FROM ReservationCodes GROUP BY SpecialistId ORDER BY ReservationDate ASC").FirstOrDefault();
             var from = query.ReservationDate;
@@ -69,7 +74,7 @@ namespace ServiceDepartmentScreen.API.Models
                 Status = Status.Upcoming
             };
             var addedEntity = _appDbContext.ReservationCodes.Add(code);
-            _appDbContext.SaveChanges();
+            return addedEntity.Entity;
         }
     }
 }

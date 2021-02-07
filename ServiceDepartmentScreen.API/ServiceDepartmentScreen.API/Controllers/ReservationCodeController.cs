@@ -71,10 +71,23 @@ namespace ServiceDepartmentScreen.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Internal database error");
             }
         }
-        [HttpGet("new")]
-        public void GetNewCode()
+        [HttpPost("new")]
+        public async Task<ActionResult<ReservationCode>> GetNewCode()
         {
-            _codeRepository.GetNewCode();
+            try
+            {
+                var newCode = _codeRepository.GenerateNewCode();
+                if (await _codeRepository.SaveChangesAsync())
+                {
+                    return Created($"api/reservationcode/{newCode.ReservationCodeId}", newCode);
+                }
+            }
+            catch (Exception )
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal database error");
+            }
+
+            return BadRequest();
         }
     }
 }

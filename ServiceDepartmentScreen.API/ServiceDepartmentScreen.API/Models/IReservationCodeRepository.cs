@@ -13,6 +13,7 @@ namespace ServiceDepartmentScreen.API.Models
         Task<ReservationCode[]> GetUpcomingCodes();
         Task<ReservationCode> GetCodeById(int id);
         Task<ReservationCode[]> GetCodesBySpecialistId(int id);
-        void GetNewCode();
+        ReservationCode GenerateNewCode();
+        Task<bool> SaveChangesAsync();
     }
 }
