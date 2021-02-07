@@ -90,14 +90,18 @@ namespace ServiceDepartmentScreen.API.Controllers
             return BadRequest();
         }
 
-        [HttpPut("update/{id}")]
-        public async Task<ActionResult<ReservationCode>> UpdateStatusOfCode(int id, Status status)
+        [HttpPut("update/{codeId}")]
+        public async Task<ActionResult<ReservationCode>> UpdateStatusOfCode(int codeId, int specialistId, Status status)
         {
             try
             {
-                var oldCode = await _codeRepository.GetCodeById(id);
-                if (oldCode == null) return NotFound($"Could not find code with this ID {id}");
-                var newCode = await _codeRepository.UpdateStatus(id, status);
+                var oldCode = await _codeRepository.GetCodeById(codeId);
+                if (oldCode == null) return NotFound($"Could not find code with this ID {codeId}");
+                if (status == Status.Active && await _codeRepository.CheckIfActiveBySpecialist(specialistId))
+                {
+                    return StatusCode(StatusCodes.Status409Conflict, "The specialist already has an active visit");
+                }
+                var newCode = await _codeRepository.UpdateStatus(codeId, status);
                 return newCode;
             }
             catch (Exception )

@@ -85,5 +85,10 @@ namespace ServiceDepartmentScreen.API.Models
             await _appDbContext.SaveChangesAsync();
             return foundCode;
         }
+
+        public async Task<bool> CheckIfActiveBySpecialist(int id)
+        {
+            return (await _appDbContext.ReservationCodes.CountAsync(r => r.SpecialistId == id && r.Status == Status.Active)) > 0;
+        }
     }
 }

@@ -16,5 +16,6 @@ namespace ServiceDepartmentScreen.API.Models
         ReservationCode GenerateNewCode();
         Task<ReservationCode> UpdateStatus(int id, Status status);
         Task<bool> SaveChangesAsync();
+        Task<bool> CheckIfActiveBySpecialist(int id);
     }
 }
