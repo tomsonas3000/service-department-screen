@@ -14,7 +14,6 @@ namespace ServiceDepartmentScreen.WebApp.Pages.Customer
         [Inject]
         public IReservationCodeService ReservationCodeService { get; set; }
         public ReservationCode GeneratedReservationCode { get; set; }
-
         protected async Task GenerateNewCode()
         {
             GeneratedReservationCode = await ReservationCodeService.GenerateNewCode();

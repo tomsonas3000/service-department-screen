@@ -19,6 +19,8 @@ namespace ServiceDepartmentScreen.WebApp
             builder.RootComponents.Add<App>("app");
             builder.Services.AddHttpClient<IReservationCodeService, ReservationCodeService>(client =>
                 client.BaseAddress = new Uri("http://localhost:5000/"));
+            builder.Services.AddHttpClient<ISpecialistService, SpecialistService>(client =>
+                client.BaseAddress = new Uri("http://localhost:5000/"));
             await builder.Build().RunAsync();
         }
     }
