@@ -15,6 +15,5 @@ namespace ServiceDepartmentScreen.WebApp.Services
         {
             _httpClient = httpClient;
         }
-
     }
 }

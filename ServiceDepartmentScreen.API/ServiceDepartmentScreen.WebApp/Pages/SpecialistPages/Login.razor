@@ -1,1 +1,15 @@
-﻿
+﻿@page "/specialist/login"
+
+<h2><b>>Login</b></h2>
+
+<div class="col-6">
+    <input type="text" class="form-control" placeholder="email_address" />
+</div>
+<br />
+<div class="col-6">
+    <input type="password" class="form-control" placeholder="password"/>
+</div>
+<br/>
+<div class="col-6">
+    <button class="btn btn-primary" @onclick="@LoginUser">Login</button>
+</div>
