@@ -34,7 +34,7 @@ namespace ServiceDepartmentScreen.API
             services.AddAuthentication(options =>
             {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            });
+            }).AddCookie();
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
