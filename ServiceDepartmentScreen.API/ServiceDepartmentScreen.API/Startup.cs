@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -31,10 +30,6 @@ namespace ServiceDepartmentScreen.API
             services.AddControllers();
             services.AddScoped<IReservationCodeRepository, ReservationCodeRepository>();
             services.AddScoped<ISpecialistRepository, SpecialistRepository>();
-            services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            }).AddCookie();
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
@@ -57,8 +52,6 @@ namespace ServiceDepartmentScreen.API
             //app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            app.UseAuthentication();
 
             app.UseAuthorization();
 

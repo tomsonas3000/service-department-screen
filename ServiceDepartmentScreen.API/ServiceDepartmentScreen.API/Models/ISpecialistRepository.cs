@@ -10,8 +10,5 @@ namespace ServiceDepartmentScreen.API.Models
     public interface ISpecialistRepository
     {
         Task<Specialist[]> GetAllSpecialists();
-        Task<Specialist> LoginSpecialist();
-        Task<string> LogoutSpecialist();
-        Task<Specialist> CheckCredentials(Specialist specialist);
     }
 }

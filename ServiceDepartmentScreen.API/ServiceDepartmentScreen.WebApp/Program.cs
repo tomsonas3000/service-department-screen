@@ -7,8 +7,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components.Authorization;
-using ServiceDepartmentScreen.WebApp.Providers;
 using ServiceDepartmentScreen.WebApp.Services;
 
 namespace ServiceDepartmentScreen.WebApp
@@ -19,9 +17,6 @@ namespace ServiceDepartmentScreen.WebApp
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
-            builder.Services.AddOptions();
-            builder.Services.AddAuthorizationCore();
-            builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
             builder.Services.AddHttpClient<IReservationCodeService, ReservationCodeService>(client =>
                 client.BaseAddress = new Uri("http://localhost:5000/"));
             builder.Services.AddHttpClient<ISpecialistService, SpecialistService>(client =>
