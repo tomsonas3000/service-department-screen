@@ -23,7 +23,7 @@ namespace ServiceDepartmentScreen.WebApp.Pages.SpecialistPages
             loginSpecialist.Username = LoginModel.Username;
             loginSpecialist.Password = LoginModel.Password;
             await SpecialistService.Login(loginSpecialist);
-            NavigationManager.NavigateTo("/specialist/overview", true);
+            //NavigationManager.NavigateTo("/specialist/overview", false);
         }
     }
 }

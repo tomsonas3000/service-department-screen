@@ -15,20 +15,11 @@ namespace ServiceDepartmentScreen.API.Models
         {
             _appDbContext = appDbContext;
         }
-        public async Task<Specialist[]> GetAllSpecialists()
-        {
-            IQueryable<Specialist> query = _appDbContext.Specialists;
-            return await query.ToArrayAsync();
-        }
 
-        public Task<Specialist> LoginSpecialist()
+        public async Task<Specialist> GetSpecialistById(int id)
         {
-            throw new NotImplementedException();
-        }
-        
-        public Task<string> LogoutSpecialist()
-        {
-            throw new NotImplementedException();
+            var query = _appDbContext.Specialists.Where(r => r.SpecialistId == id);
+            return await query.FirstOrDefaultAsync();
         }
 
         public async Task<Specialist> CheckCredentials(Specialist specialist)

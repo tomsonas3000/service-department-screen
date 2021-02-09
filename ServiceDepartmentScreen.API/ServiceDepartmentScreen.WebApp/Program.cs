@@ -21,11 +21,13 @@ namespace ServiceDepartmentScreen.WebApp
             builder.RootComponents.Add<App>("app");
             builder.Services.AddOptions();
             builder.Services.AddAuthorizationCore();
-            builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+            builder.Services.AddTransient(sp =>
+                new HttpClient {BaseAddress = new Uri("https://servicedepartmentscreenapi20210209173125.azurewebsites.net/") });
             builder.Services.AddHttpClient<IReservationCodeService, ReservationCodeService>(client =>
-                client.BaseAddress = new Uri("http://localhost:5000/"));
+                client.BaseAddress = new Uri("https://servicedepartmentscreenapi20210209173125.azurewebsites.net/"));
             builder.Services.AddHttpClient<ISpecialistService, SpecialistService>(client =>
-                client.BaseAddress = new Uri("http://localhost:5000/"));
+                client.BaseAddress = new Uri("https://servicedepartmentscreenapi20210209173125.azurewebsites.net/"));
+            builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
             await builder.Build().RunAsync();
         }
     }

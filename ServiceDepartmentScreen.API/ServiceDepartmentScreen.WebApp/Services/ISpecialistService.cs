@@ -10,5 +10,6 @@ namespace ServiceDepartmentScreen.WebApp.Services
     public interface ISpecialistService
     {
         Task Login(Specialist specialist);
+        Task<Specialist> GetSpecialistById(int id);
     }
 }

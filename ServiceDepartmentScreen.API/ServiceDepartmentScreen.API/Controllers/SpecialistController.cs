@@ -6,6 +6,7 @@ using ServiceDepartmentScreen.API.Models;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using ServiceDepartmentScreen.Shared;
 
 namespace ServiceDepartmentScreen.API.Controllers
@@ -19,10 +20,20 @@ namespace ServiceDepartmentScreen.API.Controllers
         {
             _specialistRepository = specialistRepository;
         }
-        [HttpGet]
-        public async Task<ActionResult<Specialist[]>> GetSpecialists()
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Specialist>> GetSpecialistById(int id)
         {
-            return await _specialistRepository.GetAllSpecialists();
+            try
+            {
+                var result = await _specialistRepository.GetSpecialistById(id);
+                if (result == null) return NotFound();
+                return result;
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal database error");
+            }
         }
 
         [HttpPost("login")]
@@ -46,15 +57,15 @@ namespace ServiceDepartmentScreen.API.Controllers
             return StatusCode(StatusCodes.Status204NoContent);
         }
         
-        [HttpGet("loggedin")]
-        public async Task<ActionResult<Specialist>> GetLoggedIn()
+        [HttpGet("current")]
+        public async Task<ActionResult<Specialist>> GetCurrentSpecialist()
         {
-            Specialist loggedInSpecialist = new Specialist();
+            Specialist currentSpecialist = new Specialist();
             if (User.Identity.IsAuthenticated)
             {
-                loggedInSpecialist.Username = User.FindFirstValue(ClaimTypes.Name);
+                currentSpecialist.Username = User.FindFirstValue(ClaimTypes.Name);
             }
-            return await Task.FromResult(loggedInSpecialist);
+            return await Task.FromResult(currentSpecialist);
         }
 
     }

@@ -31,18 +31,23 @@ namespace ServiceDepartmentScreen.API
             services.AddControllers();
             services.AddScoped<IReservationCodeRepository, ReservationCodeRepository>();
             services.AddScoped<ISpecialistRepository, SpecialistRepository>();
-            services.AddAuthentication(options =>
+            services.Configure<CookiePolicyOptions>(options =>
             {
-                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            }).AddCookie();
+                options.ConsentCookie.IsEssential = true;
+                options.CheckConsentNeeded = context => false;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.Cookie.IsEssential = true;
+                    options.Cookie.HttpOnly = true;
+                    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                    options.Cookie.SameSite = SameSiteMode.None;
+                });
             services.AddCors(options =>
             {
-                options.AddPolicy("CorsPolicy",
-                    builder => builder
-                        .AllowAnyMethod()
-                        .AllowCredentials()
-                        .SetIsOriginAllowed((host) => true)
-                        .AllowAnyHeader());
+                options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
         }
 
@@ -54,15 +59,17 @@ namespace ServiceDepartmentScreen.API
                 app.UseDeveloperExceptionPage();
             }
 
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseAuthentication();
+            app.UseCookiePolicy();
 
             app.UseAuthorization();
 
-            app.UseCors("CorsPolicy");
+            app.UseAuthentication();
+
+            app.UseCors("Open");
 
             app.UseEndpoints(endpoints =>
             {

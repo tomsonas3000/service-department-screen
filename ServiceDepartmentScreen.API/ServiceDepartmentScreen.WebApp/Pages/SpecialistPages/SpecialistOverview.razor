@@ -1,3 +1,23 @@
 ﻿@page "/specialist/overview"
 
 <h1>Specialist overview</h1>
+@if (Specialist != null)
+{
+    <table>
+        <thead>
+        <tr>
+            <th>Specialist ID</th>
+            <th>Username</th>
+            <th>Last name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>@Specialist.SpecialistId</td>
+            <td>@Specialist.Username</td>
+            <td>@Specialist.LastName</td>
+        </tr>
+        </tbody>
+    </table>
+}
+<p>Nesityciokit is manes.</p>
