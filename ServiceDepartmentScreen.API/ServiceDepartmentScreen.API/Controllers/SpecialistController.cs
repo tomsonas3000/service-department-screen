@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using ServiceDepartmentScreen.API.Models;
@@ -38,6 +39,13 @@ namespace ServiceDepartmentScreen.API.Controllers
             return checkedSpecialist;
         }
 
+        [HttpPost("logout")]
+        public async Task<ActionResult<String>> LogoutUser()
+        {
+            await HttpContext.SignOutAsync();
+            return StatusCode(StatusCodes.Status204NoContent);
+        }
+        
         [HttpGet("loggedin")]
         public async Task<ActionResult<Specialist>> GetLoggedIn()
         {
@@ -48,5 +56,6 @@ namespace ServiceDepartmentScreen.API.Controllers
             }
             return await Task.FromResult(loggedInSpecialist);
         }
+
     }
 }
